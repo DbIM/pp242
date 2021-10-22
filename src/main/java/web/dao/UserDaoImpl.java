@@ -6,6 +6,7 @@ import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
@@ -19,8 +20,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void saveUser(String name, String lastName, byte age) {
-
+    @Transactional
+    public User saveUser(User user) {
+        entityManager.persist(user);
+        return user;
     }
 
     @Override
@@ -28,7 +31,9 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+
     @Override
+    @Transactional
     public List<User> getAllUsers() {
         return entityManager.createQuery("FROM User", User.class)
                 .getResultList();
