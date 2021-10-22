@@ -30,7 +30,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return entityManager.createQuery("SELECT * FROM " + User.class)
+        return entityManager.createQuery("FROM User", User.class)
                 .getResultList();
     }
 
