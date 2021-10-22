@@ -4,8 +4,7 @@ import web.model.User;
 
 import java.util.List;
 
-public interface userDao {
-    void createUsersTable();
+public interface UserDao {
 
     void dropUsersTable();
 

@@ -3,9 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Title</title>
 </head>
 <body>
-Test
+<div>
+    <th:block th:each="user : ${users}">
+        <h1 th:text="${user}"></h1>
+    </th:block>
+</div>
 </body>
 </html>

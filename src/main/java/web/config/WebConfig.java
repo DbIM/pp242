@@ -19,6 +19,8 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import web.model.User;
 
 import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -29,7 +31,7 @@ import static org.hibernate.cfg.AvailableSettings.*;
 @EnableWebMvc
 @ComponentScan("web")
 public class WebConfig implements WebMvcConfigurer {
-    @Autowired
+/*    @Autowired
     private Environment env;
 
     @Bean
@@ -40,30 +42,7 @@ public class WebConfig implements WebMvcConfigurer {
         dataSource.setUsername(env.getProperty("db.username"));
         dataSource.setPassword(env.getProperty("db.password"));
         return dataSource;
-    }
-
-    @Bean
-    public LocalSessionFactoryBean getSessionFactory() {
-        LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-        factoryBean.setDataSource(getDataSource());
-
-        Properties props=new Properties();
-        props.put(DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-        props.put(SHOW_SQL, "true");
-        props.put(HBM2DDL_AUTO, "create");
-
-        factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(User.class);
-        factoryBean.setPackagesToScan("web");
-        return factoryBean;
-    }
-
-    @Bean
-    public HibernateTransactionManager getTransactionManager() {
-        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-        transactionManager.setSessionFactory(getSessionFactory().getObject());
-        return transactionManager;
-    }
+    }*/
 
     private final ApplicationContext applicationContext;
 
