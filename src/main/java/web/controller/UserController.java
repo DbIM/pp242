@@ -44,14 +44,9 @@ public class UserController {
 		return "redirect:/";
 	}
 
-/*	@PatchMapping("/{id}")
-	public String updateUser(@ModelAttribute("user") User user) {
-		userService.updateUser(user);
+	@GetMapping("/deleteUser/{id}")
+	public String deleteUser(@PathVariable("id") Long id){
+		userService.removeUser(id);
 		return "redirect:/";
-	}*/
-
-/*	@GetMapping(value = "/")
-	public String indexPage() {
-		return "index";
-	}*/
+	}
 }

@@ -31,14 +31,15 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User saveUser(User user) {
-        entityManager.persist(user);
-        return user;
+    public void removeUser(Long id) {
+        User user = entityManager.find(User.class, id);
+        entityManager.remove(user);
     }
 
     @Override
-    public void removeUserById(long id) {
-
+    public User saveUser(User user) {
+        entityManager.persist(user);
+        return user;
     }
 
     @Override
