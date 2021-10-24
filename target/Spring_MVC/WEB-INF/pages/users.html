@@ -3,15 +3,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>All users list</title>
 </head>
 <body>
 <div>
-    <th:block th:each="user : ${users}">
-        <h1 th:text="${user.getName()}"></h1>
-        <h1 th:text="${user.getLastName()}"></h1>
-        <h1 th:text="${user.getAge()}"></h1>
-    </th:block>
+    <h1>
+    <table>
+    <tr>
+        <th>Name</th>
+        <th>Last name</th>
+        <th>Age</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.getName()}">...</td>
+        <td th:text="${user.getLastName()}">...</td>
+        <td th:text="${user.getAge()}">...</td>
+        <td>
+            <form th:action="@{/{id}/updateUser(id=${user.getId()})}">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+    </tr>
+    </table>
+    </h1>
 </div>
+<input type="button" value="Add new user" onclick="window.location.href = 'addUser'">
+
 </body>
 </html>

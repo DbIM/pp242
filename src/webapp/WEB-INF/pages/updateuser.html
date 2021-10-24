@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+    <style>
+        .difForm {float: left; padding-left: 50px}
+        .context {float: left; padding-left: 180px}
+        .block1 {float: left; width: 120px; padding-left: 50px}
+    </style>
+</head>
+<body>
+
+<div>
+    <a class="context"><b>UPDATE OF USERS</b></a>
+</div>
+<br>
+<hr>
+<br>
+<form th:method="PATCH" th:action="@{/updateUser(id=${user.getId()})}" th:object="${user}">
+    <div class="block1">
+        <label for="name">Enter name: </label>
+    </div>
+    <div>
+        <input type="text" th:field="*{name}" id="name"/>
+    </div>
+    <br>
+    <div class="block1">
+        <label for="surname">Enter last name: </label>
+    </div>
+    <div>
+        <input type="text" th:field="*{lastName}" id="surname"/>
+    </div>
+    <br>
+    <div class="block1">
+        <label for="year">Enter year: </label>
+    </div>
+    <div>
+        <input type="text" th:field="*{age}" id="year">
+    </div>
+    <br>
+    <hr>
+    <div class="difForm">
+        <input type="submit" value="Update" onclick="window.location.href = '/'">
+    </div>
+</form>
+<div class="difForm">
+    <form th:action="@{/}">
+        <input type="submit" value="Return">
+    </form>
+</div>
+
+</body>
+</html>

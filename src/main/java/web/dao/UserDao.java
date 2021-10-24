@@ -8,6 +8,10 @@ public interface UserDao {
 
     void dropUsersTable();
 
+    User updateUser(User user);
+
+    User getUserById(Long id);
+
     User saveUser(User user);
 
     void removeUserById(long id);
