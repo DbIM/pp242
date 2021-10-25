@@ -15,11 +15,6 @@ public class UserDaoImpl implements UserDao {
     EntityManager entityManager;
 
     @Override
-    public void dropUsersTable() {
-
-    }
-
-    @Override
     public User updateUser(User user) {
         entityManager.merge(user);
         return user;
@@ -48,8 +43,4 @@ public class UserDaoImpl implements UserDao {
                 .getResultList();
     }
 
-    @Override
-    public void cleanUsersTable() {
-
-    }
 }

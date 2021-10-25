@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface UserDao {
 
-    void dropUsersTable();
-
     User updateUser(User user);
 
     User getUserById(Long id);
@@ -18,5 +16,4 @@ public interface UserDao {
 
     List<User> getAllUsers();
 
-    void cleanUsersTable();
 }
