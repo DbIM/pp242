@@ -49,4 +49,9 @@ public class UserController {
 		userService.removeUser(id);
 		return "redirect:/";
 	}
+
+	@GetMapping(value = "/login")
+	public String getLoginPage() {
+		return "login";
+	}
 }
