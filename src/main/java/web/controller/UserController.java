@@ -7,16 +7,25 @@ import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
+@RequestMapping("")
 public class UserController {
 	@Autowired
 	UserService userService;
 
-	@GetMapping("/")
-	public String getAllUsers(ModelMap model) {
-		model.addAttribute("users", userService.getAllUsers());
-		return "users";
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginPage() {
+		return "login";
+	}
+
+	@GetMapping(value = "/adminusers")
+	public String getUserPage(ModelMap model) {
+		model.addAttribute("adminusers", userService.getAllUsers());
+		return "adminusers";
 	}
 
 	@GetMapping("/addUser")
@@ -48,10 +57,5 @@ public class UserController {
 	public String deleteUser(@PathVariable("id") Long id){
 		userService.removeUser(id);
 		return "redirect:/";
-	}
-
-	@GetMapping(value = "/login")
-	public String getLoginPage() {
-		return "login";
 	}
 }

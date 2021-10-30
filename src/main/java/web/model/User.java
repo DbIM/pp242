@@ -9,8 +9,8 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-@Table (name="users")
-public class User implements UserDetails{
+@Table(name = "users")
+public class User implements UserDetails {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -20,22 +20,24 @@ public class User implements UserDetails{
     private int age;
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> mappedrole;
+    /*    @ManyToMany(fetch = FetchType.LAZY)
+        @JoinTable(
+                name = "user_role",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id"))
+        private Set<Role> mappedrole;*/
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String name, String lastName, int age, String password, Set<Role> mappedrole) {
+    public User(String name, String lastName, int age, String password, Set<Role> roles) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
         this.password = password;
-        this.mappedrole = mappedrole;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -74,13 +76,13 @@ public class User implements UserDetails{
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
+/*    public Set<Role> getRoles() {
         return mappedrole;
     }
 
     public void setRoles(Set<Role> role) {
         this.mappedrole = role;
-    }
+    }*/
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -117,3 +119,4 @@ public class User implements UserDetails{
         return false;
     }
 }
+

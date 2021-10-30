@@ -43,4 +43,8 @@ public class UserDaoImpl implements UserDao {
                 .getResultList();
     }
 
+    @Override
+    public User getUserByName(String name) {
+        return entityManager.find(User.class, name);
+    }
 }

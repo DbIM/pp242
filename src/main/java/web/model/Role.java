@@ -6,8 +6,6 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Set;
 
-// Этот класс реализует интерфейс GrantedAuthority, в котором необходимо переопределить только один метод getAuthority() (возвращает имя роли).
-// Имя роли должно соответствовать шаблону: «ROLE_ИМЯ», например, ROLE_USER.
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
@@ -17,10 +15,13 @@ public class Role implements GrantedAuthority {
     private Long id;
     private String role;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "mappedrole")
-    private Set<User> user;
+/*    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "mappedrole")
+    private Set<User> user;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Role(Long id, String role, Set<User> user) {
+    public Role(Long id, String role, User user) {
         this.id = id;
         this.role = role;
         this.user = user;
@@ -47,11 +48,11 @@ public class Role implements GrantedAuthority {
         return role;
     }
 
-    public Set<User> getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Set<User> user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

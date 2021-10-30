@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All users list</title>
+    <title>Admin users list</title>
 </head>
 <body>
 <h1>
@@ -14,16 +14,26 @@
             <td>Name</td>
             <td>Last name</td>
             <td>Age</td>
+            <td>Role</td>
+            <td>Edit</td>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
+        <tr th:each="user : ${adminusers}">
             <td th:text="${user.getName()}">...</td>
             <td th:text="${user.getLastName()}">...</td>
             <td th:text="${user.getAge()}">...</td>
+            <td th:text="${user.getRoles()}">...</td>
+            <td>
+                <form th:action="@{/{id}/updateUser(id=${user.getId()})}">
+                    <input valign="middle" align="center" type="submit" value="Edit">
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
 </h1>
+<center><input type="button" value="Add new user" onclick="window.location.href = 'addUser'">
+
 </body>
 </html>
