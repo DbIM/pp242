@@ -39,9 +39,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User(String admin, String admin1, int age, String password, List<String> roles) {
-    }
-
     public Long getId() {
         return id;
     }

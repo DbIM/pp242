@@ -2,28 +2,35 @@ package web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import web.model.Role;
 import web.model.User;
 import web.service.UserService;
-import web.service.UserServiceImpl;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Component
 public class AddAdminConfig {
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @Autowired
-    public AddAdminConfig(UserServiceImpl userService){
+    public AddAdminConfig(UserService userService) {
         this.userService = userService;
     }
 
-    List<String> roles = Arrays.asList("ADMIN");
+    Set<Role> roles = new HashSet<Role>();
+
     @PostConstruct
-    public void Init(){
+    public void Init() {
+
+
         User user = new User("admin", "admin", 10, "12345", roles);
+        userService.saveUser(user);
     }
+
+
 
 }

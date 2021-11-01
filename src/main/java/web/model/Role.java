@@ -15,12 +15,6 @@ public class Role implements GrantedAuthority {
     private Long id;
     private String role;
 
-    /* @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
-    private Set<User> user;
-   @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;*/
-
     public Role(Long id, String role) {
         this.id = id;
         this.role = role;
