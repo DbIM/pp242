@@ -22,10 +22,21 @@ public class UserController {
 		return "login";
 	}
 
+	@GetMapping(value = "/")
+	public String indexPage() {
+		return "index";
+	}
+
 	@GetMapping(value = "/adminusers")
-	public String getUserPage(ModelMap model) {
+	public String getAdminUserPage(ModelMap model) {
 		model.addAttribute("adminusers", userService.getAllUsers());
 		return "adminusers";
+	}
+
+	@GetMapping(value = "/users")
+	public String getUserPage(ModelMap model) {
+		model.addAttribute("users", userService.getAllUsers());
+		return "users";
 	}
 
 	@GetMapping("/addUser")

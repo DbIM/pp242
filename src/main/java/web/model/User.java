@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,13 +21,11 @@ public class User implements UserDetails {
     private int age;
     private String password;
 
-    /*    @ManyToMany(fetch = FetchType.LAZY)
-        @JoinTable(
-                name = "user_role",
-                joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "role_id"))
-        private Set<Role> mappedrole;*/
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
     public User() {
@@ -38,6 +37,9 @@ public class User implements UserDetails {
         this.age = age;
         this.password = password;
         this.roles = roles;
+    }
+
+    public User(String admin, String admin1, int age, String password, List<String> roles) {
     }
 
     public Long getId() {
@@ -76,13 +78,13 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-/*    public Set<Role> getRoles() {
-        return mappedrole;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRoles(Set<Role> role) {
-        this.mappedrole = role;
-    }*/
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
