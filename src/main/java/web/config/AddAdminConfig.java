@@ -28,11 +28,19 @@ public class AddAdminConfig {
 
     @PostConstruct
     public void Init() {
-        Role role = new Role("ADMIN");
-        roleService.saveRole(role);
-        Set<Role> roles = new HashSet<Role>(Collections.singleton(role));
-        User user = new User("admin", "admin", 10, "12345", roles);
-        userService.saveUser(user);
+        Role adminRole = new Role("ADMIN");
+        roleService.saveRole(adminRole);
+
+        Role userRole = new Role("USER");
+        roleService.saveRole(userRole);
+
+        Set<Role> adminRoles = new HashSet<Role>(Collections.singleton(adminRole));
+        User adminUser = new User("admin", "admin", 10, "admin", adminRoles);
+        userService.saveUser(adminUser);
+
+        Set<Role> userRoles = new HashSet<Role>(Collections.singleton(userRole));
+        User userUser = new User("user", "user", 10, "user", userRoles);
+        userService.saveUser(userUser);
     }
 
 
