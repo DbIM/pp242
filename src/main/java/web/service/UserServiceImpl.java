@@ -44,12 +44,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
+    public User getUserByName(String name) {
+        return userDao.getUserByName(name);
+    }
+
+    @Override
+    @Transactional
     public void removeUser(Long id) {
         userDao.removeUser(id);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return userDao.getUserByName(s);
+    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+        return userDao.getUserByName(name);
     }
+
+
 }

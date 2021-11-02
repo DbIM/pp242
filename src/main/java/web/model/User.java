@@ -16,7 +16,7 @@ public class User implements UserDetails {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
-    private String name;
+    private String userName;
     private String lastName;
     private int age;
     private String password;
@@ -31,8 +31,8 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String lastName, int age, String password, Set<Role> roles) {
-        this.name = name;
+    public User(String userName, String lastName, int age, String password, Set<Role> roles) {
+        this.userName = userName;
         this.lastName = lastName;
         this.age = age;
         this.password = password;
@@ -48,11 +48,11 @@ public class User implements UserDetails {
     }
 
     public String getName() {
-        return name;
+        return userName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.userName = userName;
     }
 
     public String getLastName() {
@@ -100,22 +100,22 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
 
