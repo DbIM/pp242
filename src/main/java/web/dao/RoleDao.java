@@ -11,7 +11,7 @@ public interface RoleDao {
 
     Role getByName(String roleName);
 
-    void save(Role role);
+    Role save(Role role);
 
     void delete(Role role);
 
