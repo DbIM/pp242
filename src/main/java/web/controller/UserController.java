@@ -39,10 +39,10 @@ public class UserController {
 		return "users";
 	}
 
-	@GetMapping(value = "/userpage")
-	public String getThisUserPage(@PathVariable("name") String name,ModelMap model) {
-		model.addAttribute("user", userService.getUserByName(name));
-		return "user";
+	@GetMapping("/{id}")
+	public String showUser (@PathVariable("id") Long id, ModelMap model){
+		model.addAttribute("user", userService.getUserById(id));
+		return "/userpage";
 	}
 
 	@GetMapping("/admin/addUser")
