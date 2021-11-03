@@ -30,6 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.loginSuccessHandler = loginSuccessHandler;
     }
 
+    @Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        // конфигурация для прохождения аутентификации
+        //тут для аутентификации нам нужно чтобы юзердитейлс информацию передавал
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -52,10 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(loginSuccessHandler); // подключаем наш SuccessHandler для перенеправления по ролям
     }
 
-    @Bean
+/*    @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
-    }
+    }*/
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -65,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 /*    @Bean
     public PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }*/
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
@@ -78,6 +85,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
-    }
+    }*/
 
 }

@@ -34,11 +34,11 @@ public class AddAdminConfig {
         roleService.saveRole(userRole);
 
         Set<Role> adminRoles = new HashSet<Role>(Collections.singleton(adminRole));
-        User adminUser = new User("admin", "admin", 10, "$2a$10$XjWMxSA5tYV7suStxkw2pu6.wjL8xihYaJjOAzyGkGVQSoDUixV0G", adminRoles);
+        User adminUser = new User("admin", "admin", "admin", adminRoles);
         userService.saveUser(adminUser);
 
         Set<Role> userRoles = new HashSet<Role>(Collections.singleton(userRole));
-        User userUser = new User("user", "user", 10, "user", userRoles);
+        User userUser = new User("user", "user", "user", userRoles);
         userService.saveUser(userUser);
     }
 

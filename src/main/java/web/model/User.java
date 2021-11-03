@@ -18,7 +18,6 @@ public class User implements UserDetails {
     private Long id;
     private String userName;
     private String lastName;
-    private int age;
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -31,10 +30,9 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String userName, String lastName, int age, String password, Set<Role> roles) {
+    public User(String userName, String lastName, String password, Set<Role> roles) {
         this.userName = userName;
         this.lastName = lastName;
-        this.age = age;
         this.password = password;
         this.roles = roles;
     }
@@ -63,14 +61,6 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -85,17 +75,17 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return this.userName;
     }
 
     @Override
