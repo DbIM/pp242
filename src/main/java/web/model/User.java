@@ -16,11 +16,11 @@ public class User implements UserDetails {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
-    private String userName;
+    private String name;
     private String lastName;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -30,8 +30,8 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String userName, String lastName, String password, Set<Role> roles) {
-        this.userName = userName;
+    public User(String name, String lastName, String password, Set<Role> roles) {
+        this.name = name;
         this.lastName = lastName;
         this.password = password;
         this.roles = roles;
@@ -46,11 +46,11 @@ public class User implements UserDetails {
     }
 
     public String getName() {
-        return userName;
+        return name;
     }
 
     public void setName(String name) {
-        this.userName = userName;
+        this.name = name;
     }
 
     public String getLastName() {
@@ -85,7 +85,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.userName;
+        return this.name;
     }
 
     @Override

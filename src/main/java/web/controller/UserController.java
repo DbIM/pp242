@@ -27,10 +27,10 @@ public class UserController {
 		return "index";
 	}
 
-	@GetMapping(value = "/adminusers")
+	@GetMapping(value = "/admin/adminusers")
 	public String getAdminUserPage(ModelMap model) {
 		model.addAttribute("adminusers", userService.getAllUsers());
-		return "adminusers";
+		return "admin/adminusers";
 	}
 
 	@GetMapping(value = "/users")
@@ -39,32 +39,38 @@ public class UserController {
 		return "users";
 	}
 
-	@GetMapping("/addUser")
+	@GetMapping(value = "/userpage")
+	public String getThisUserPage(@PathVariable("name") String name,ModelMap model) {
+		model.addAttribute("user", userService.getUserByName(name));
+		return "user";
+	}
+
+	@GetMapping("/admin/addUser")
 	public String createUser(ModelMap model) {
 		User user = new User();
 		model.addAttribute("users", user);
-		return "adduser";
+		return "admin/adduser";
 	}
 
-	@PostMapping("/saveUser")
+	@PostMapping("/admin/saveUser")
 	public String saveUser(@ModelAttribute("user") User user) {
 		userService.saveUser(user);
 		return "redirect:/";
 	}
 
-	@GetMapping("/{id}/updateUser")
+	@GetMapping("/admin/{id}/updateUser")
 	public String updateUser(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("user", userService.getUserById(id));
-		return "updateuser";
+		return "admin/updateuser";
 	}
 
-	@PostMapping("/updateUser")
+	@PostMapping("/admin/updateUser")
 	public String updateUser(@ModelAttribute("user") User user) {
 		userService.updateUser(user);
 		return "redirect:/";
 	}
 
-	@GetMapping("/deleteUser/{id}")
+	@GetMapping("/admin/deleteUser/{id}")
 	public String deleteUser(@PathVariable("id") Long id){
 		userService.removeUser(id);
 		return "redirect:/";

@@ -15,7 +15,6 @@
         <tr>
             <td>Name</td>
             <td>Last name</td>
-            <td>Age</td>
             <td>Add record</td>
             <td>Back</td>
         </tr>
@@ -23,15 +22,15 @@
         <tbody>
         <td>Name <input type="text" th:field="*{name}"></td>
         <td>Last name <input type="text" th:field="*{lastName}"></td>
-        <td>Age <input type="text" th:field="*{age}"></td>
-        <td><input type="submit" value="Ok" onclick="window.location.href = '/'"></td>
+        <td><input type="submit" value="Ok" onclick="window.location.href = '/adminusers'"></td>
         <td>
-            <form th:action="@{/}">
+            <form th:action="@{/adminusers}">
                 <input type="submit" value="Return">
             </form>
         </td>
         </tbody>
     </table>
 </form>
+<center><input type="button" value="LOGOUT" onclick="window.location.href = 'logout'">
 </body>
 </html>

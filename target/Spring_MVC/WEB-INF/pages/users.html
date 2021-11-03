@@ -13,17 +13,16 @@
         <tr>
             <td>Name</td>
             <td>Last name</td>
-            <td>Age</td>
         </tr>
         </thead>
         <tbody>
         <tr th:each="user : ${users}">
             <td th:text="${user.getName()}">...</td>
             <td th:text="${user.getLastName()}">...</td>
-            <td th:text="${user.getAge()}">...</td>
         </tr>
         </tbody>
     </table>
 </h1>
+<center><input type="button" value="LOGOUT" onclick="window.location.href = 'logout'">
 </body>
 </html>

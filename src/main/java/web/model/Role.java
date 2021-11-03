@@ -4,7 +4,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -43,4 +42,8 @@ public class Role implements GrantedAuthority {
         return role;
     }
 
+    @Override
+    public String toString() {
+        return  role;
+    }
 }

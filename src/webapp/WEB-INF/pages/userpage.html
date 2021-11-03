@@ -3,11 +3,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All users list</title>
+    <title>User page</title>
 </head>
 <body>
 <h1>
-    <center>User's list page:
+    <center>User page:
     <table border="1" align="center">
         <thead>
         <tr>
@@ -16,7 +16,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
+        <tr th:each="user : ${user}">
             <td th:text="${user.getName()}">...</td>
             <td th:text="${user.getLastName()}">...</td>
         </tr>
