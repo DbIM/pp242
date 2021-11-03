@@ -27,10 +27,10 @@ public class AddAdminConfig {
 
     @PostConstruct
     public void Init() {
-        Role adminRole = new Role("ADMIN");
+        Role adminRole = new Role("ROLE_ADMIN");
         roleService.saveRole(adminRole);
 
-        Role userRole = new Role("USER");
+        Role userRole = new Role("ROLE_USER");
         roleService.saveRole(userRole);
 
         Set<Role> adminRoles = new HashSet<Role>(Collections.singleton(adminRole));

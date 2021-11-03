@@ -44,8 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable();
 
         http.authorizeRequests()
-                .antMatchers("/adminusers").hasAuthority("ADMIN")
-                .antMatchers("/users").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/adminusers").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/users").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                 .antMatchers("/").permitAll() // доступность всем
                 .antMatchers("/login").permitAll() // доступность всем
                 .and().formLogin()
@@ -59,8 +59,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
     }
+
+/*    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }*/
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
