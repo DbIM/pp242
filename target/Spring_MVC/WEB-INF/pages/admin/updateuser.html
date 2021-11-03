@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user</title>
+</head>
+<body>
+<h1>
+    <center>User update page:
+</h1>
+<br>
+<form th:method="PATCH" th:action="@{/admin/updateUser(id=${user.getId()})}" th:object="${user}">
+    <table align="center" border="1">
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>Last name</td>
+            <td>Role</td>
+            <td>Edit record</td>
+            <td>Delete record</td>
+            <td>Back</td>
+        </tr>
+        </thead>
+        <tbody>
+        <td><label for="name">Enter name: </label>
+            <input type="text" th:field="*{name}" id="name"/></td>
+        <td><label for="surname">Enter last name: </label>
+            <input type="text" th:field="*{lastName}" id="surname"/></td>
+        <td><label for="roles">Role name: </label>
+            <input type="text" th:field="*{roles}" id="roles"/></td>
+        <td>
+            <input type="submit" value="Update record" onclick="window.location.href = '/admin/adminusers'">
+        </td>
+        <td>
+            <a th:href="@{/admin/deleteUser/{id}(id=${user.id})}" color="red"><B>Delete record</B></a>
+        </td>
+        <td>
+            <form th:action="@{/adminusers}">
+                <input type="submit" value="Return">
+            </form>
+        </td>
+        </tbody>
+    </table>
+</form>
+<center><input type="button" value="LOGOUT" onclick="window.location.href = 'logout'">
+</body>
+</html>
